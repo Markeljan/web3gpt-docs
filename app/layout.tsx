@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
 import { Layout, Navbar } from "nextra-theme-docs";
 import "nextra-theme-docs/style.css";
 import { Head } from "nextra/components";
@@ -50,8 +51,8 @@ export default async function RootLayout({
         />
       }
     >
-      <Button asChild size="sm">
-        <Link className="text-sm" href="https://w3gpt.ai" target="_blank">
+      <Button asChild size="sm" className="text-sm">
+        <Link href="https://w3gpt.ai" target="_blank">
           App
         </Link>
       </Button>
