@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { Layout, Navbar } from "nextra-theme-docs";
 import "nextra-theme-docs/style.css";
+import { Analytics } from "@vercel/analytics/react";
 import { Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 
@@ -72,6 +73,7 @@ export default async function RootLayout({
         >
           <div className="max-w-full md:max-w-7xl mx-auto">{children}</div>
         </Layout>
+        <Analytics />
       </body>
     </html>
   );
