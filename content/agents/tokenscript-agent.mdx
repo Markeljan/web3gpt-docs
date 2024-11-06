@@ -4,7 +4,7 @@ import { Bleed, Callout, Steps } from "nextra/components";
 
 ## Overview
 
-**TokenScript Agent** empowers users to create, deploy, and manage smart contracts seamlessly by leveraging Web3GPT AI-driven code generation. Users can simply describe their requirements, and TokenScript Agent will produce the Solidity code, suggest edits, and even handle deployment.
+**TokenScript Agent** empowers users to create, deploy, and manage smart contracts seamlessly by leveraging Web3GPT AI-driven code generation. Users can simply describe their requirements, and TokenScript Agent will produce the Solidity code, suggest edits, handle deployment and create a TokenScript for the deployed contract.
 
 ## Features
 
@@ -14,6 +14,7 @@ import { Bleed, Callout, Steps } from "nextra/components";
 - **Error Handling and Debugging**: Automatically resolves common errors and provides support for missing parameters or incorrect values.
 - **Automatic Verification:** Contracts auto-verified on block explorers.
 - **IPFS Integration:** Source files stored on IPFS.
+- **TokenScript Creation:** Creates a TokenScript which enables users to view and interact with their deployed smart contract.
 
 ## How to Use TokenScript Agent
 
@@ -44,7 +45,11 @@ Once satisfied with the code:
 Automatic Deployment: Type "Deploy to [Network Name]" to have the contract deployed on an EVM-compatible testnet.
 Manual Deployment: If manual deployment is preferred, connect your wallet and use the generated code.
 
-### 5. Error Handling
+### 5. TokenScript Creation
+
+TokenScript Agent will create a TokenScript for the deployed contract and provide you with the details URl which users can use to view and interact with the deployed contract.
+
+### 6. Error Handling
 TokenScript Agent attempts to fix any compilation or deployment errors automatically. For complex issues, you may need to clarify or add specific parameters.
 </Steps>
 
@@ -61,7 +66,7 @@ Create an ERC721 NFT contract with metadata stored on IPFS.
 Web3GPT will generate the Solidity code for you:
 
 ```solidity
-// SPDX-License-Identifier: MIT
+ // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts@4.9.3/token/ERC721/ERC721.sol";
@@ -78,7 +83,7 @@ interface IERC5169 {
 
 contract MyNFT is ERC721, ERC721Enumerable, Ownable, IERC5169 {
     uint private _tokenIdCounter;
-    string private constant baseTokenURI = "ipfs://QmYourIpfsHashHere";
+    string private constant baseTokenURI = "ipfs://QmYourIPFSHashHere"; // Replace with your IPFS hash
 
     constructor() ERC721("MyNFT", "MNFT") Ownable() {
         _tokenIdCounter = 1;
@@ -91,15 +96,26 @@ contract MyNFT is ERC721, ERC721Enumerable, Ownable, IERC5169 {
         _tokenIdCounter++;
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 firstTokenId, uint256 batchSize) internal override(ERC721, ERC721Enumerable) {
+    function _beforeTokenTransfer(address from, address to, uint256 firstTokenId, uint256 batchSize) internal override(ERC721,ERC721Enumerable) {
         // Intentionally left blank
     }
 
-    function tokenURI(uint256 tokenId) public view override(ERC721) returns (string memory) {
+    function tokenURI(uint256 tokenId)
+        public
+        pure
+        override(ERC721)
+        returns (string memory)
+    {
+        tokenId;
         return baseTokenURI;
     }
 
-    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool) {
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
         return super.supportsInterface(interfaceId) || interfaceId == type(IERC5169).interfaceId;
     }
 
@@ -134,11 +150,10 @@ And you will get this response from Our AI agent:
 
 The ERC721 NFT contract has been successfully deployed on the Sepolia network!
 
-- Contract Address: [0x1D449aA762E5F0E6E35E0663226445b9ce11942a](https://eth-sepolia.blockscout.com/address/0x1D449aA762E5F0E6E35E0663226445b9ce11942a)
-- IPFS Repository: [Source Code on IPFS](https://web3gpt.mypinata.cloud/ipfs/bafybeihc2foi6whsohrj6bsqkw5hn67agakoupu5goozyqjkozh2gassoy)
+- Contract Address: [0x1D449aA762E5F0E6E35E0663226445b9ce11942a](https://eth-sepolia.blockscout.com/address/0xB3E003ed3D8870A9e8861f07C682293Eee05Acd5)
+- IPFS Repository: [Source Code on IPFS](https://web3gpt.mypinata.cloud/ipfs/bafybeibatghmh6ozw4hfhcsdvpgolytfocdvjwwbmz6imqp7zilhsmyoyi)
 
 If you'd like to proceed with creating a TokenScript or need any further assistance, please let me know!
-
 
 <Callout type="warning" emoji="⚠️">
   If the contract has Ownable access control, or has interactions with the
@@ -151,6 +166,23 @@ If you'd like to proceed with creating a TokenScript or need any further assista
 ### Results
 
 **View Deployment Results:** Navigate to the explorer link. The contract will be automatically verified within 1 minute of deployment. Visit the IPFS directory to view source code and compilation files.
+
+### 4. TokenScript Creation
+
+Prompt Web3GPT agent with:
+
+```plaintext
+Create a TokenScript for this contract
+```
+And you will get this response from Our AI agent:
+
+The TokenScript for the deployed NFT contract has been successfully created and uploaded. Here are the details:
+
+- Transaction Explorer URL: [View Transaction](https://eth-sepolia.blockscout.com/tx/0x8bf8c2de4eb2ce0876d6ae1b881fbe34ea7c126d61acaf70246ab5464967eea9)
+- IPFS URL for TokenScript: [IPFS Link](https://web3gpt.mypinata.cloud/ipfs/bafkreifoexndqzgtgozavckmuiutjy7a4w4axu3bgnkh6qjm4hrg2hamne)
+- Viewer URL: [TokenScript Viewer](https://viewer.tokenscript.org/?chain=11155111&contract=0xb3e003ed3d8870a9e8861f07c682293eee05acd5)
+
+You can use the viewer URL to explore how your TokenScript looks and interacts with the smart contract. If there's anything more you'd like to do, please let me know!
 
 ### Errors
 
