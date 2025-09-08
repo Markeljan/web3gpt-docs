@@ -13,7 +13,7 @@ export const Footer = () => {
       <div className="flex flex-col items-start gap-1 text-xs">
         <Link
           className="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer"
-          href="https://x.com/0xsoko"
+          href="https://x.com/soko_eth"
           target="_blank"
         >
           <p>Maintained by</p>
