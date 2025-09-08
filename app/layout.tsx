@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     site: "@w3gptai",
-    creator: "@0xSoko",
+    creator: "@soko_eth",
   },
 };
 
