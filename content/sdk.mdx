@@ -1,0 +1,166 @@
+import { Callout, Steps } from "nextra/components";
+
+# W3GPT SDK
+
+Use the [`w3gpt` TypeScript package](https://www.npmjs.com/package/w3gpt) to give an application or agent access to Web3GPT's contract-generation and deployment conversation.
+
+The SDK keeps generation and deployment in one chat. Save the returned `chatId` and pass it to every later call that should use the same generated contract.
+
+## Prerequisites
+
+- [Bun](https://bun.sh) for the commands and interactive confirmations below, or a modern Node.js runtime with `fetch` and an equivalent prompt
+- Network access to `https://w3gpt.ai`
+- Real POL is required by the configured deployment account for Polygon mainnet transactions
+
+<Callout type="info">
+  The hosted SDK currently does not require a client API key and does not read a
+  `W3GPT_API_KEY`. Do not put an OpenAI key, RPC key, wallet private key, or seed
+  phrase in your code or prompt. Self-hosting Web3GPT has separate server-side
+  credential requirements.
+</Callout>
+
+## Install
+
+```bash
+mkdir w3gpt-polygon-demo
+cd w3gpt-polygon-demo
+bun init -y
+bun add w3gpt@latest
+```
+
+## Generate, review, and deploy
+
+Create `index.ts`:
+
+```ts filename="index.ts"
+import { PolygonChainId, w3gpt } from "w3gpt";
+
+const requestedNetwork = process.argv[2] ?? "amoy";
+
+if (requestedNetwork !== "amoy" && requestedNetwork !== "mainnet") {
+  throw new Error('Use "amoy" or "mainnet".');
+}
+
+const networkName =
+  requestedNetwork === "mainnet" ? "Polygon mainnet" : "Polygon Amoy";
+const chainId =
+  requestedNetwork === "mainnet"
+    ? PolygonChainId.Mainnet
+    : PolygonChainId.Amoy;
+const client = w3gpt();
+const started = await client.startChat("agent_web3gpt");
+
+const generated = await client.chat({
+  chatId: started.chatId,
+  message: [
+    "Create a minimal Solidity Counter contract.",
+    "Use Solidity 0.8.20 or newer.",
+    "Return the complete source and explain its permissions.",
+    "Do not deploy it yet.",
+  ].join(" "),
+});
+
+console.log(generated.response);
+console.log(`Chat ID: ${started.chatId}`);
+
+const reviewConfirmation = prompt(
+  `Review the complete contract above. Type ${requestedNetwork.toUpperCase()} to request deployment on ${networkName}:`,
+);
+
+if (reviewConfirmation !== requestedNetwork.toUpperCase()) {
+  console.log("Deployment cancelled before an onchain transaction was requested.");
+  process.exit(0);
+}
+
+const deploymentRequest = await client.deployContract({
+  chainId,
+  chatId: started.chatId,
+  prompt: [
+    "Use the exact reviewed Counter source already present in this chat.",
+    "Do not change its source or constructor arguments.",
+    "Return the transaction hash, contract address, and block-explorer URL.",
+  ].join(" "),
+});
+
+console.log(deploymentRequest.response);
+
+const finalConfirmation = prompt(
+  `Confirm that the agent response names ${networkName} and the reviewed contract. Type DEPLOY ${requestedNetwork.toUpperCase()} to continue:`,
+);
+
+if (finalConfirmation !== `DEPLOY ${requestedNetwork.toUpperCase()}`) {
+  console.log("Deployment cancelled at the agent confirmation step.");
+  process.exit(0);
+}
+
+const deployed = await client.chat({
+  chatId: deploymentRequest.chatId,
+  message: [
+    `Yes, I confirm deployment to ${networkName} (chain ID ${chainId}).`,
+    "Use the exact reviewed contract source and constructor arguments from this chat.",
+  ].join(" "),
+});
+
+console.log(deployed.response);
+```
+
+<Steps>
+### Generate without deploying
+
+```bash
+bun run index.ts amoy
+```
+
+Review the complete Solidity source, constructor arguments, ownership, upgrade controls, and any external calls. Type `AMOY` only after that review.
+
+### Deploy to Polygon Amoy
+
+The agent will restate the deployment target before broadcasting. Check that response, then type `DEPLOY AMOY`. Open the returned transaction in [PolygonScan Amoy](https://amoy.polygonscan.com). Polygon Amoy uses chain ID `80002` and test POL.
+
+### Deploy to Polygon mainnet
+
+Only after reviewing and testing the exact contract on Amoy:
+
+```bash
+bun run index.ts mainnet
+```
+
+Type `MAINNET` after reviewing the generated contract, then check the agent's restated target and type `DEPLOY MAINNET`. Open the returned transaction in [PolygonScan](https://polygonscan.com). Polygon mainnet uses chain ID `137` and real POL.
+</Steps>
+
+<Callout type="warning" emoji="⚠️">
+  Mainnet deployments are real, cost POL, and cannot be undone. Generated code
+  is not a substitute for a security review. Confirm the target network and
+  contract source before completing both confirmation prompts.
+</Callout>
+
+## Continue a chat or read its history
+
+Treat a `chatId` as a secret capability: anyone who has it can continue that conversation. Do not commit it or expose it in client-side logs.
+
+```ts
+const reply = await client.chat({
+  chatId: "saved-chat-id",
+  message: "Explain the deployed contract's owner-only functions.",
+  history: true,
+});
+
+console.log(reply.response);
+console.log(reply.history);
+```
+
+## API summary
+
+- `w3gpt({ baseUrl?, fetch? })` creates a client. `baseUrl` defaults to `https://w3gpt.ai`.
+- `client.startChat(agentId?)` creates a chat and returns its `chatId`.
+- `client.chat({ agentId?, chatId?, message?, history?, full? })` starts or continues a conversation. `full` is an alias for `history`.
+- `client.deployContract({ chainId, prompt, agentId?, chatId?, history?, full? })` requests a deployment with a typed Polygon chain ID. When `chatId` points to an existing generation chat, the helper tells the agent to use that contract; without a prior contract, it generates one first.
+- Use `PolygonChainId.Amoy` (`80002`) or `PolygonChainId.Mainnet` (`137`). The SDK rejects other chain IDs in this helper.
+
+## Sources
+
+- [`w3gpt` on npm](https://www.npmjs.com/package/w3gpt)
+- [Web3GPT application source](https://github.com/Markeljan/web3gpt)
+- [Live skill endpoint guide](https://w3gpt.ai/skill.md)
+- [Live API reference](https://w3gpt.ai/api-docs)
+- [Polygon mainnet and Amoy network details](https://docs.polygon.technology/pos/reference/rpc-endpoints)

@@ -6,7 +6,25 @@ When using Web3GPT, you can specify the chain to interact with in the chat. This
 - Verify your contracts automatically on block explorers
 - Deploy the same contract across multiple chains
 
-You can also switch to any supported chain in your wallet when deploying manually. For block explorer links, and contract verification Web3GPT uses [Blockscout](https://www.blockscout.com)
+You can also switch to any supported chain in your wallet when deploying manually. Web3GPT returns a link to the configured explorer and, where available, submits the source for verification.
+
+## Polygon
+
+- **Polygon mainnet**
+
+  - Chain ID: 137
+  - Gas token: POL
+  - Block Explorer: [polygonscan.com](https://polygonscan.com)
+  - Deployment: supported through the Web3GPT agent and SDK flow
+
+- **Polygon Amoy**
+
+  - Chain ID: 80002
+  - Gas token: test POL
+  - Block Explorer: [amoy.polygonscan.com](https://amoy.polygonscan.com)
+  - Deployment: supported through the Web3GPT agent, SDK, and manual wallet flow
+
+Polygon mainnet transactions use real POL and are irreversible. Generate and review the contract first, test the exact deployment flow on Amoy, and state either `Polygon mainnet` or `Polygon Amoy` explicitly in the prompt. See the [SDK guide](/sdk) for a confirmation-gated example and Polygon's [official network reference](https://docs.polygon.technology/pos/reference/rpc-endpoints) for current chain details.
 
 ## ETH Testnets
 
@@ -45,7 +63,3 @@ You can also switch to any supported chain in your wallet when deploying manuall
 
   - Chain ID: 5003
   - Block Explorer: [explorer.sepolia.mantle.xyz](https://explorer.sepolia.mantle.xyz)
-
-- **Polygon Amoy**
-  - Chain ID: 80002
-  - Block Explorer: [amoy.polygonscan.com](https://amoy.polygonscan.com)
