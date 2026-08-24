@@ -12,7 +12,7 @@ We are asking Polygon to assess this productized SDK and observed Polygon usage 
 
 | Original Tranche 3 requirement | Status | Evidence and limitation |
 | --- | --- | --- |
-| SDK published on npm and GitHub with documentation | **In progress** | [`w3gpt@0.1.1` is published on npm](https://www.npmjs.com/package/w3gpt), but its package contents are incomplete. [SDK PR #1](https://github.com/web3-gpt/sdk/pull/1) and version [PR #2](https://github.com/web3-gpt/sdk/pull/2) are merged, and the corrected `0.1.2` tarball passes local consumer imports. [Documentation PR #6](https://github.com/Markeljan/web3gpt-docs/pull/6) is ready. `[PENDING: add npm authentication, publish 0.1.2, and clean-install it from the registry]` `[PENDING: make the SDK GitHub repository public or provide evaluator access; it is private as of this draft]` |
+| SDK published on npm and GitHub with documentation | **In progress** | [`w3gpt@0.1.1` is published on npm](https://www.npmjs.com/package/w3gpt), but its package contents are incomplete. [SDK PR #1](https://github.com/web3-gpt/sdk/pull/1), version [PR #2](https://github.com/web3-gpt/sdk/pull/2), and [documentation PR #6](https://github.com/Markeljan/web3gpt-docs/pull/6) are merged, and the corrected `0.1.2` tarball passes local consumer imports. `[PENDING: add npm authentication, publish 0.1.2, and clean-install it from the registry]` `[PENDING: make the SDK GitHub repository public or provide evaluator access; it is private as of this draft]` |
 | At least 25 users interacting with agents in Telegram | **Not demonstrated** | Telegram community membership from an earlier tranche is not equivalent to 25 users interacting with agents. No qualifying interaction dataset is presented in this report. |
 | At least 5 agents deployed and 100 mainnet transactions executed by those agents | **Not demonstrated under the original definition** | The public deployment dashboard shows 7 Polygon mainnet deployments, not 100 agent-attributed mainnet transactions. The 77 custom-agent records and platform deployment counts do not prove this original metric because they are not joined into an agent-to-mainnet-transaction cohort. |
 | Telegram giveaway/challenge agent that autonomously rewards users on Polygon mainnet | **Not delivered** | Work was redirected to general contract-generation and deployment capabilities designed for use by agents. This is a requested scope variance, not strict completion of the original deliverable. |
@@ -33,7 +33,8 @@ Evidence to attach:
 - The `0.1.2` tarball contains the CJS build, ESM build, both declaration files, README, and package manifest; clean CJS and ESM consumer imports passed before the release attempt.
 - `[PENDING: public SDK source URL and commit]`
 - [SDK pull request #1, merged at commit `5f49e03`](https://github.com/web3-gpt/sdk/pull/1)
-- [Documentation pull request #6](https://github.com/Markeljan/web3gpt-docs/pull/6)
+- [Live Polygon SDK guide](https://docs.w3gpt.ai/sdk)
+- [Documentation pull request #6](https://github.com/Markeljan/web3gpt-docs/pull/6), merged at commit [`cdc6717`](https://github.com/Markeljan/web3gpt-docs/commit/cdc67174aaa68c98c6d06db3fc45f9e01992c6a8)
 
 ### 2. Polygon deployment support and activity
 
@@ -124,8 +125,8 @@ We acknowledge that this evidence does not strictly satisfy the original Telegra
 
 - [ ] Add npm authentication, publish the corrected SDK package, and verify it from a clean temporary project.
 - [ ] Make the SDK source repository public, or obtain explicit evaluator acceptance of private-source access.
-- [ ] Merge and deploy the documentation change; the Web3GPT application changes are in production.
-- [x] Add public PR and commit links for the SDK and app; add the docs merge commit after merging PR #6.
+- [x] Merge and deploy the Web3GPT application and documentation changes.
+- [x] Add public PR and commit links for the SDK, app, and docs.
 - [x] Add dated receipt-verified Amoy and mainnet transaction/contract links.
 - [x] Capture the dashboard snapshot and document how each count is calculated.
 - [x] Attach redacted evidence for both the deployment and custom-agent snapshots.
