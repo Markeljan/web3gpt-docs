@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-08-24T17:37:01Z",
+  "package": {
+    "integrity": "sha512-tVI60KrMZkxTGFBPXg+MdxQMqKAtKDo51lm2Nl+dtYbBfGEzD4j6JBbAVTF/HqzRtzPjIxDmgtvFL4peoMTA5Q==",
+    "name": "w3gpt",
+    "publishedAt": "2026-08-24T17:34:55.111Z",
+    "registryTarball": "https://registry.npmjs.org/w3gpt/-/w3gpt-0.1.2.tgz",
+    "version": "0.1.2"
+  },
+  "release": {
+    "commit": "3aef1c46235a0293bf63e9440b8ef2f9a9ae8435",
+    "repository": "https://github.com/web3-gpt/sdk",
+    "workflowRun": "https://github.com/web3-gpt/sdk/actions/runs/32757419757"
+  },
+  "smokeTest": {
+    "commonJs": {
+      "amoyChainId": 80002,
+      "deployContractType": "function",
+      "mainnetChainId": 137,
+      "passed": true
+    },
+    "esm": {
+      "amoyChainId": 80002,
+      "deployContractType": "function",
+      "mainnetChainId": 137,
+      "passed": true
+    },
+    "install": "bun add w3gpt@0.1.2",
+    "installPassed": true,
+    "source": "public npm registry",
+    "temporaryProject": true
+  }
+}
