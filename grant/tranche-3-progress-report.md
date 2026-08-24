@@ -1,6 +1,6 @@
-# Polygon Growth Grant — Tranche 3 Progress Report (Draft)
+# Polygon Growth Grant — Tranche 3 Progress Report
 
-> Working draft as of August 24, 2026. The two remaining release decisions are marked `[PENDING]` and require the project owner's npm authentication and repository-visibility approval.
+> Final evidence snapshot as of August 24, 2026.
 
 ## Executive summary
 
@@ -12,7 +12,7 @@ We are asking Polygon to assess this productized SDK and observed Polygon usage 
 
 | Original Tranche 3 requirement | Status | Evidence and limitation |
 | --- | --- | --- |
-| SDK published on npm and GitHub with documentation | **In progress** | [`w3gpt@0.1.1` is published on npm](https://www.npmjs.com/package/w3gpt), but its package contents are incomplete. [SDK PR #1](https://github.com/web3-gpt/sdk/pull/1), version [PR #2](https://github.com/web3-gpt/sdk/pull/2), and [documentation PR #6](https://github.com/Markeljan/web3gpt-docs/pull/6) are merged, and the corrected `0.1.2` tarball passes local consumer imports. `[PENDING: add npm authentication, publish 0.1.2, and clean-install it from the registry]` `[PENDING: make the SDK GitHub repository public or provide evaluator access; it is private as of this draft]` |
+| SDK published on npm and GitHub with documentation | **Delivered** | [`w3gpt@0.1.2`](https://www.npmjs.com/package/w3gpt/v/0.1.2) was published on August 24, 2026 through npm trusted publishing. The [SDK repository](https://github.com/web3-gpt/sdk) is public, [SDK PR #1](https://github.com/web3-gpt/sdk/pull/1), version [PR #2](https://github.com/web3-gpt/sdk/pull/2), trusted-publishing [PR #3](https://github.com/web3-gpt/sdk/pull/3), and [documentation PR #6](https://github.com/Markeljan/web3gpt-docs/pull/6) are merged, and a clean registry install passed both ESM and CommonJS consumer checks. |
 | At least 25 users interacting with agents in Telegram | **Not demonstrated** | Telegram community membership from an earlier tranche is not equivalent to 25 users interacting with agents. No qualifying interaction dataset is presented in this report. |
 | At least 5 agents deployed and 100 mainnet transactions executed by those agents | **Not demonstrated under the original definition** | The public deployment dashboard shows 7 Polygon mainnet deployments, not 100 agent-attributed mainnet transactions. The 77 custom-agent records and platform deployment counts do not prove this original metric because they are not joined into an agent-to-mainnet-transaction cohort. |
 | Telegram giveaway/challenge agent that autonomously rewards users on Polygon mainnet | **Not delivered** | Work was redirected to general contract-generation and deployment capabilities designed for use by agents. This is a requested scope variance, not strict completion of the original deliverable. |
@@ -27,12 +27,15 @@ We are asking Polygon to assess this productized SDK and observed Polygon usage 
 - The mainnet example is gated by a local source-review confirmation and the agent's separate network confirmation. It warns that a mainnet deployment is a real, irreversible transaction that costs POL.
 - Hosted SDK access currently requires no client API key; secrets such as private keys, seed phrases, OpenAI keys, and RPC keys must not be placed in prompts or client code.
 
-Evidence to attach:
+Evidence:
 
-- `[PENDING: corrected npm 0.1.2 publication timestamp and registry clean-install log; the current release run failed without an npm credential and published nothing]`
-- The `0.1.2` tarball contains the CJS build, ESM build, both declaration files, README, and package manifest; clean CJS and ESM consumer imports passed before the release attempt.
-- `[PENDING: public SDK source URL and commit]`
+- [`w3gpt@0.1.2`](https://www.npmjs.com/package/w3gpt/v/0.1.2) was published at `2026-08-24T17:34:55.111Z` by the successful [GitHub Actions release run](https://github.com/web3-gpt/sdk/actions/runs/32757419757).
+- A fresh temporary Bun project installed `w3gpt@0.1.2` from the public registry. ESM and CommonJS imports both exposed `PolygonChainId.Mainnet` as `137`, `PolygonChainId.Amoy` as `80002`, and `deployContract` as a function. The [redacted registry smoke summary](evidence/sdk-registry-smoke-2026-08-24.json) records the public package metadata and results.
+- The published `0.1.2` tarball contains the CJS build, ESM build, both declaration files, README, and package manifest.
+- [Public SDK source](https://github.com/web3-gpt/sdk) at release-workflow merge commit [`3aef1c4`](https://github.com/web3-gpt/sdk/commit/3aef1c46235a0293bf63e9440b8ef2f9a9ae8435)
 - [SDK pull request #1, merged at commit `5f49e03`](https://github.com/web3-gpt/sdk/pull/1)
+- [SDK version pull request #2, merged at commit `555bcac`](https://github.com/web3-gpt/sdk/pull/2)
+- [SDK trusted-publishing pull request #3, merged at commit `3aef1c4`](https://github.com/web3-gpt/sdk/pull/3)
 - [Live Polygon SDK guide](https://docs.w3gpt.ai/sdk)
 - [Documentation pull request #6](https://github.com/Markeljan/web3gpt-docs/pull/6), merged at commit [`cdc6717`](https://github.com/Markeljan/web3gpt-docs/commit/cdc67174aaa68c98c6d06db3fc45f9e01992c6a8)
 
@@ -59,7 +62,7 @@ Representative receipts were re-read through Polygon dRPC at `2026-08-24T15:26:3
 - Polygon Amoy: successful [transaction](https://amoy.polygonscan.com/tx/0xa13cd6eb195285d99f28526d54952a4ca4f992144cc4c5b2a7e4b6f4ea99474e) and [created contract](https://amoy.polygonscan.com/address/0x0780377b6412138baa78d3675fbaf48ab63b06c6).
 - Fresh post-fix SDK flow: successful Amoy [transaction](https://amoy.polygonscan.com/tx/0xc47d2d17b106041ef677675088eff765f7536a929cebe935f235163076c74f79) and [created contract](https://amoy.polygonscan.com/address/0xdee6686c5fd9db49db3693f43fbd4fa13d257469), mined at `2026-08-24T15:43:05Z`. The agent returned the exact address, transaction hash, and both explorer URLs after the explicit same-chat confirmation.
 
-Evidence to attach:
+Evidence:
 
 - [Timestamped Amoy dashboard screenshot](evidence/polygon-amoy-deployments-2026-08-24.png) and [Polygon mainnet dashboard screenshot](evidence/polygon-mainnet-deployments-2026-08-24.png)
 - [Redacted analytics snapshot and count definitions](evidence/analytics-snapshot-2026-08-24.json)
@@ -102,7 +105,7 @@ The first SDK smoke reached the live deployment flow but returned `Monthly capac
 
 ### Evidence quality
 
-Platform totals are useful but do not automatically prove unique users or autonomous-agent transactions. In addition, the production dashboard's current write path records a deployment before waiting for its receipt. This report therefore relies on the independent receipt check for successful-contract claims and keeps dashboard deployments, custom-agent creation, Telegram activity, and the original mainnet transaction metric separate.
+Platform totals are useful but do not automatically prove unique users or autonomous-agent transactions. Before application PR #44, the production write path recorded a deployment before waiting for its receipt. This report therefore uses an independent receipt check for claims about the historical snapshot and keeps dashboard deployments, custom-agent creation, Telegram activity, and the original mainnet transaction metric separate.
 
 [Application PR #44](https://github.com/Markeljan/web3gpt/pull/44) changed that write path to wait for one confirmation, reject reverted or non-contract-creation receipts, derive the address from `receipt.contractAddress`, and only then persist deployment and verification data. The fresh SDK transaction was persisted after a successful receipt, and [PR #45](https://github.com/Markeljan/web3gpt/pull/45) made its exact transaction evidence available to the agent response.
 
@@ -121,14 +124,14 @@ We request approval of a Tranche 3 scope variance based on:
 
 We acknowledge that this evidence does not strictly satisfy the original Telegram interaction, autonomous giveaway agent, or five-agent/100-mainnet-transaction targets. If strict metric substitution is not accepted, we request written confirmation of the smallest additional evidence or demonstration needed for approval.
 
-## Pre-submission checklist
+## Evidence checklist
 
-- [ ] Add npm authentication, publish the corrected SDK package, and verify it from a clean temporary project.
-- [ ] Make the SDK source repository public, or obtain explicit evaluator acceptance of private-source access.
+- [x] Publish the corrected SDK package through npm trusted publishing and verify it from a clean temporary project.
+- [x] Make the SDK source repository public.
 - [x] Merge and deploy the Web3GPT application and documentation changes.
 - [x] Add public PR and commit links for the SDK, app, and docs.
 - [x] Add dated receipt-verified Amoy and mainnet transaction/contract links.
 - [x] Capture the dashboard snapshot and document how each count is calculated.
 - [x] Attach redacted evidence for both the deployment and custom-agent snapshots.
 - [x] State that no attributable user feedback was collected.
-- [x] Submit this as a transparent scope-variance request, not as proof that the original metrics were all met.
+- [x] Frame this as a transparent scope-variance request, not as proof that the original metrics were all met.
