@@ -63,7 +63,8 @@ Evidence to attach:
 - `[PENDING: attach the timestamped raw export or reproducible analytics query used for the reconciliation]`
 - `[PENDING: at least one Polygon Amoy transaction and contract-explorer link from the updated flow]`
 - `[PENDING: at least one new Polygon mainnet transaction and contract-explorer link from the updated SDK flow]`
-- `[PENDING: Web3GPT application pull request and deployed commit]`
+- [Web3GPT application pull request #44, commit `d945724`](https://github.com/Markeljan/web3gpt/pull/44)
+- `[PENDING: deployed Web3GPT production commit]`
 
 ### 3. Custom-agent product
 
@@ -94,11 +95,13 @@ Polygon mainnet deployment spends real POL and creates irreversible state. The u
 
 ### Current Amoy RPC capacity
 
-The current SDK smoke reached the live deployment flow but the fresh Amoy tool invocation returned `Monthly capacity limit exceeded` from the configured production RPC provider. This report does not count that attempt as a deployment. `[PENDING: restore or replace Amoy RPC capacity, rerun the SDK smoke, and attach the successful explorer link]`
+The current SDK smoke reached the live deployment flow but the fresh Amoy tool invocation returned `Monthly capacity limit exceeded` from the configured production RPC provider. This report does not count that attempt as a deployment. [Application PR #44](https://github.com/Markeljan/web3gpt/pull/44) changes the defaults to Polygon's documented dRPC endpoints, supports server-side overrides and a public fallback, and is intended to remove that blocked provider dependency. `[PENDING: deploy the application PR, rerun the SDK smoke, and attach the successful explorer link]`
 
 ### Evidence quality
 
-Platform totals are useful but do not automatically prove unique users or autonomous-agent transactions. In addition, the dashboard's current write path records a deployment before waiting for its receipt. This report therefore relies on the independent receipt check for successful-contract claims and keeps dashboard deployments, custom-agent creation, Telegram activity, and the original mainnet transaction metric separate. `[PENDING: link the application change that stores only confirmed deployments after it is merged]`
+Platform totals are useful but do not automatically prove unique users or autonomous-agent transactions. In addition, the production dashboard's current write path records a deployment before waiting for its receipt. This report therefore relies on the independent receipt check for successful-contract claims and keeps dashboard deployments, custom-agent creation, Telegram activity, and the original mainnet transaction metric separate.
+
+[Application PR #44](https://github.com/Markeljan/web3gpt/pull/44) changes that write path to wait for one confirmation, reject reverted or non-contract-creation receipts, derive the address from `receipt.contractAddress`, and only then persist deployment and verification data. `[PENDING: verify this behavior after the PR is merged and deployed]`
 
 ## User and community feedback
 
