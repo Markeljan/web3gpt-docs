@@ -52,7 +52,10 @@ The dashboard reduces the 723 raw records to 671 public records by deduplicating
 
 All 165 Polygon transaction hashes visible in that snapshot were checked against Polygon PoS receipts on August 24, 2026. All 158 Amoy receipts and all 7 mainnet receipts had successful status `0x1` and a non-null `contractAddress`, supporting the narrower claim that these are successful contract creations. Four of the mainnet deployments occurred in 2026 (March 30, April 1, and May 1) and three occurred on August 31, 2024, so this remains all-time platform evidence rather than a current-milestone cohort.
 
-Public example: [transaction](https://polygonscan.com/tx/0x204eb4d47ba19dfdc83772c3aa53bfb56c67770f15cce817599248f72742e74f) and [verified contract](https://polygonscan.com/address/0x1992e2EFeA7348809a9B888c53463657f7fa3368#code).
+Representative receipts were re-read through Polygon dRPC at `2026-08-24T15:26:32.238Z`:
+
+- Polygon mainnet: successful [transaction](https://polygonscan.com/tx/0x41df0f46e5a8fb378e00217c378aa6f307a3182a541b1b03267c79db2e4fa06e) and [created contract](https://polygonscan.com/address/0x5f25db5cd6375476225e89657bd770d275aacc17), with a block time of `2026-05-01T06:20:18Z`.
+- Polygon Amoy: successful [transaction](https://amoy.polygonscan.com/tx/0xa13cd6eb195285d99f28526d54952a4ca4f992144cc4c5b2a7e4b6f4ea99474e) and [created contract](https://amoy.polygonscan.com/address/0x0780377b6412138baa78d3675fbaf48ab63b06c6).
 
 Evidence to attach:
 
