@@ -12,7 +12,7 @@ We are asking Polygon to assess this productized SDK and observed Polygon usage 
 
 | Original Tranche 3 requirement | Status | Evidence and limitation |
 | --- | --- | --- |
-| SDK published on npm and GitHub with documentation | **In progress** | [`w3gpt` is published on npm](https://www.npmjs.com/package/w3gpt). `[PENDING: link the corrected installable package version after a clean-registry test]` `[PENDING: make the SDK GitHub repository public or provide evaluator access; it is private as of this draft]` `[PENDING: merged SDK PR]` `[PENDING: merged documentation PR]` |
+| SDK published on npm and GitHub with documentation | **In progress** | [`w3gpt` is published on npm](https://www.npmjs.com/package/w3gpt). [SDK PR #1](https://github.com/web3-gpt/sdk/pull/1) at commit `d5d807b` and [documentation PR #6](https://github.com/Markeljan/web3gpt-docs/pull/6) are open. `[PENDING: publish and clean-install the corrected 0.1.2 package]` `[PENDING: make the SDK GitHub repository public or provide evaluator access; it is private as of this draft]` |
 | At least 25 users interacting with agents in Telegram | **Not demonstrated** | Telegram community membership from an earlier tranche is not equivalent to 25 users interacting with agents. No qualifying interaction dataset is presented in this report. |
 | At least 5 agents deployed and 100 mainnet transactions executed by those agents | **Not demonstrated under the original definition** | The public deployment dashboard shows 7 Polygon mainnet deployments, not 100 agent-attributed mainnet transactions. The 77 custom-agent records and platform deployment counts do not prove this original metric because they are not joined into an agent-to-mainnet-transaction cohort. |
 | Telegram giveaway/challenge agent that autonomously rewards users on Polygon mainnet | **Not delivered** | Work was redirected to general contract-generation and deployment capabilities designed for use by agents. This is a requested scope variance, not strict completion of the original deliverable. |
@@ -29,11 +29,11 @@ We are asking Polygon to assess this productized SDK and observed Polygon usage 
 
 Evidence to attach:
 
-- `[PENDING: corrected npm version and publication timestamp]`
+- `[PENDING: corrected npm 0.1.2 publication timestamp]`
 - `[PENDING: successful clean install, import, and smoke-test log]`
 - `[PENDING: public SDK source URL and commit]`
-- `[PENDING: SDK pull request]`
-- `[PENDING: documentation pull request]`
+- [SDK pull request #1, commit `d5d807b`](https://github.com/web3-gpt/sdk/pull/1)
+- [Documentation pull request #6](https://github.com/Markeljan/web3gpt-docs/pull/6)
 
 ### 2. Polygon deployment support and activity
 
