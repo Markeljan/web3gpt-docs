@@ -1,0 +1,24 @@
+{
+  "network": "Polygon Amoy",
+  "chainId": 80002,
+  "contractName": "TrancheThreeReceiptProof",
+  "contractAddress": "0xdee6686c5fd9db49db3693f43fbd4fa13d257469",
+  "transactionHash": "0xc47d2d17b106041ef677675088eff765f7536a929cebe935f235163076c74f79",
+  "transactionBlockTime": "2026-08-24T15:43:05.000Z",
+  "receipt": {
+    "status": "0x1",
+    "contractAddress": "0xdee6686c5fd9db49db3693f43fbd4fa13d257469",
+    "blockNumber": "0x2ba5c3f"
+  },
+  "links": {
+    "contract": "https://amoy.polygonscan.com/address/0xdee6686c5fd9db49db3693f43fbd4fa13d257469",
+    "transaction": "https://amoy.polygonscan.com/tx/0xc47d2d17b106041ef677675088eff765f7536a929cebe935f235163076c74f79"
+  },
+  "validation": {
+    "flow": "w3gpt SDK deployContract request, explicit same-chat confirmation, production Web3GPT deployment tool",
+    "receiptSource": "https://polygon-amoy.drpc.org",
+    "receiptConfirmed": true,
+    "agentReturnedExactTransactionEvidence": true,
+    "productionFix": "https://github.com/Markeljan/web3gpt/pull/45"
+  }
+}

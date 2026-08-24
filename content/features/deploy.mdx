@@ -44,7 +44,13 @@ contract MyToken is ERC20 {
 
 ### Deploy
 
-**Agent Deploy:** Deploy your contract without needing a wallet. Simply specify the target chain (e.g., "Deploy to X chain"), and the Agent will handle the deployment.
+**Agent Deploy:** Deploy your contract without needing a browser wallet. Specify the exact target chain, such as `Polygon Amoy` or `Polygon mainnet`, and the Agent will handle the deployment.
+
+<Callout type="warning" emoji="⚠️">
+  Polygon mainnet deployments spend real POL and cannot be undone. Review and
+  test the exact contract on Amoy before requesting a mainnet deployment. For a
+  confirmation-gated TypeScript example, see the [SDK guide](/sdk).
+</Callout>
 
 <Callout type="warning" emoji="⚠️">
   If the contract has Ownable access control, or has interactions with the
@@ -146,7 +152,7 @@ contract JokeContest {
 
 - **Easy to Use:** No coding experience required.
 - **AI-Powered Code Generation:** Let AI handle the heavy lifting.
-- **Supports Multiple EVM Testnets:** Deploy on Base Sepolia and more.
+- **Polygon and EVM Support:** Deploy through the agent on Polygon mainnet, Polygon Amoy, and other supported EVM testnets.
 - **Automatic Verification:** Contracts auto-verified on block explorers.
 - **IPFS Integration:** Source files stored on IPFS.
 
